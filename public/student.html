@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Student – Live Quiz</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page" id="mainPage">
+      <div class="badge">✨ Intervue Poll – Student</div>
+      <h1>Let’s <b>Get Started</b></h1>
+      <p class="sub">
+        Wait for the teacher to ask questions, submit your answers, and see how
+        they compare with your classmates.
+      </p>
+
+      <div id="statusArea" class="mt-3">
+        <h2>Wait for the teacher to ask questions..</h2>
+      </div>
+
+      <div id="questionArea" class="mt-4"></div>
+    </div>
+
+    <div class="page" id="kickedPage" style="display: none; text-align: center">
+      <div class="badge">✨ Intervue Poll</div>
+      <h1>You’ve been <b>Kicked out!</b></h1>
+      <p class="sub">
+        Looks like the teacher has removed you from the poll system. Please try
+        again sometime.
+      </p>
+    </div>
+
+    <div class="chat-toggle" id="chatToggle">💬</div>
+    <div class="chat-panel" id="chatPanel">
+      <div class="chat-header">
+        <div class="chat-tab active" data-tab="chat">Chat</div>
+        <div class="chat-tab" data-tab="participants">Participants</div>
+      </div>
+      <div class="chat-body" id="chatTab"></div>
+      <div class="chat-body" id="participantsTab" style="display: none"></div>
+      <div class="chat-input-row">
+        <input
+          id="chatInput"
+          placeholder="Type a message..."
+          autocomplete="off"
+        />
+        <button class="btn-ghost" id="chatSendBtn">Send</button>
+      </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="student.js"></script>
+  </body>
+</html>

@@ -1,0 +1,85 @@
+  <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Live Polling System – Join</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page">
+      <div class="badge">✨ Intervue Poll</div>
+      <h1>Welcome to the <b>Live Polling System</b></h1>
+      <p class="sub">
+        Please select the role that best describes you to begin using the live
+        polling system.
+      </p>
+
+      <div class="role-cards">
+        <div class="role-card selected" data-role="student">
+          <h3>I’m a Student</h3>
+          <p>Submit answers and participate in live polls.</p>
+        </div>
+        <div class="role-card" data-role="teacher">
+          <h3>I’m a Teacher</h3>
+          <p>Create questions and view live poll results.</p>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div style="flex: 1">
+          <label class="label">Your Name</label>
+          <input class="input" id="nameInput" placeholder="Rahul Bajaj" />
+        </div>
+        <div style="width: 200px">
+          <label class="label">Room Code</label>
+          <input
+            class="input"
+            id="roomInput"
+            maxlength="6"
+            placeholder="ABC123"
+          />
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <button class="btn-primary" id="continueBtn">Continue</button>
+      </div>
+    </div>
+
+    <script>
+      const roleCards = document.querySelectorAll(".role-card");
+      let selectedRole = "student";
+
+      roleCards.forEach((card) => {
+        card.addEventListener("click", () => {
+          roleCards.forEach((c) => c.classList.remove("selected"));
+          card.classList.add("selected");
+          selectedRole = card.dataset.role;
+        });
+      });
+
+      document.getElementById("continueBtn").onclick = () => {
+        const name = document
+          .getElementById("nameInput")
+          .value.trim();
+        let room = document
+          .getElementById("roomInput")
+          .value.trim()
+          .toUpperCase();
+
+        if (!name || !room) {
+          alert("Please fill in your name and room code.");
+          return;
+        }
+
+        const page = selectedRole === "teacher" ? "teacher.html" : "student.html";
+        const params = new URLSearchParams({
+          name,
+          room,
+          role: selectedRole,
+        }).toString();
+        window.location.href = `${page}?${params}`;
+      };
+    </script>
+  </body>
+</html>
